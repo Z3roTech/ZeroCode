@@ -21,10 +21,6 @@ namespace ZeroCode.Database.SqlServer
             /// <param name="requests"></param>
             /// <param name="connectionString"></param>
             /// <param name="connection">An existing connection that can be used for executing query</param>
-            /// <param name="useTransaction">
-            ///     If <see langword="true" /> execution will be covered in transaction, that will be
-            ///     rollbacked on exception.
-            /// </param>
             /// <param name="token"></param>
             /// <returns></returns>
             /// <exception cref="InvalidOperationException"></exception>
@@ -32,7 +28,6 @@ namespace ZeroCode.Database.SqlServer
                 RequestBody[] requests,
                 string? connectionString,
                 SqlConnection? connection,
-                bool useTransaction = false,
                 CancellationToken token = default
             )
             {
@@ -42,26 +37,10 @@ namespace ZeroCode.Database.SqlServer
                 if (connection.State != ConnectionState.Open)
                     throw new InvalidOperationException(ExceptionsHelper.CantOpenSqlConnection);
 
-                var transaction = useTransaction
-                    ? await connection.BeginTransactionAsync(token)
-                    : null;
-
                 try
                 {
                     foreach (var body in requests)
                         await Request.ExecuteNonQueryAsyncInternal(body, connectionString, connection, token);
-
-                    if (transaction != null) await transaction.CommitAsync(token);
-                }
-                catch (OperationCanceledException)
-                {
-                    if (transaction != null) await transaction.RollbackAsync(CancellationToken.None);
-                    throw;
-                }
-                catch
-                {
-                    if (transaction != null) await transaction.RollbackAsync(token);
-                    throw;
                 }
                 finally
                 {
@@ -79,10 +58,6 @@ namespace ZeroCode.Database.SqlServer
             /// <param name="requests"></param>
             /// <param name="connectionString"></param>
             /// <param name="connection">An existing connection that can be used for executing query</param>
-            /// <param name="useTransaction">
-            ///     If <see langword="true" /> execution will be covered in transaction, that will be
-            ///     rollbacked on exception.
-            /// </param>
             /// <param name="token"></param>
             /// <returns></returns>
             /// <exception cref="InvalidOperationException"></exception>
@@ -90,7 +65,6 @@ namespace ZeroCode.Database.SqlServer
                 RequestBody[] requests,
                 string? connectionString,
                 SqlConnection? connection,
-                bool useTransaction = false,
                 CancellationToken token = default
             )
             {
@@ -100,10 +74,6 @@ namespace ZeroCode.Database.SqlServer
                 if (connection.State != ConnectionState.Open)
                     throw new InvalidOperationException(ExceptionsHelper.CantOpenSqlConnection);
 
-                var transaction = useTransaction
-                    ? await connection.BeginTransactionAsync(token)
-                    : null;
-
                 try
                 {
                     var result = await requests.ToAsyncEnumerable()
@@ -111,19 +81,7 @@ namespace ZeroCode.Database.SqlServer
                             await Request.ExecuteAsyncInternal(body, connectionString, connection, token))
                         .ToListAsync(token);
 
-                    if (transaction != null) await transaction.CommitAsync(token);
-
                     return result;
-                }
-                catch (OperationCanceledException)
-                {
-                    if (transaction != null) await transaction.RollbackAsync(CancellationToken.None);
-                    throw;
-                }
-                catch
-                {
-                    if (transaction != null) await transaction.RollbackAsync(token);
-                    throw;
                 }
                 finally
                 {
@@ -139,30 +97,27 @@ namespace ZeroCode.Database.SqlServer
             public static Task ExecuteNonQueryAsync(
                 RequestBody[] requests,
                 string connectionString,
-                bool useTransaction = false,
                 CancellationToken token = default)
             {
                 if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
 
-                return ExecuteNonQueryAsyncInternal(requests, connectionString, null, useTransaction, token);
+                return ExecuteNonQueryAsyncInternal(requests, connectionString, null, token);
             }
 
             /// <inheritdoc cref="ExecuteNonQueryAsyncInternal" />
             public static Task ExecuteNonQueryAsync(
                 RequestBody[] requests,
                 SqlConnection connection,
-                bool useTransaction = false,
                 CancellationToken token = default)
             {
                 if (connection == null) throw new ArgumentNullException(nameof(connection));
 
-                return ExecuteNonQueryAsyncInternal(requests, null, connection, useTransaction, token);
+                return ExecuteNonQueryAsyncInternal(requests, null, connection, token);
             }
 
             /// <inheritdoc cref="ExecuteNonQueryAsyncInternal" />
             public static Task ExecuteNonQueryAsync(
                 RequestBody[] requests,
-                bool useTransaction = false,
                 CancellationToken token = default)
             {
                 if (_globalConnectionString == null)
@@ -170,37 +125,34 @@ namespace ZeroCode.Database.SqlServer
                         ExceptionsHelper.UseConnectionStringSetterFirst(nameof(SetGlobalConnectionString))
                     );
 
-                return ExecuteNonQueryAsyncInternal(requests, _globalConnectionString, null, useTransaction, token);
+                return ExecuteNonQueryAsyncInternal(requests, _globalConnectionString, null, token);
             }
 
             /// <inheritdoc cref="ExecuteAsyncInternal" />
             public static Task<List<Dictionary<string, object?>[][]>> ExecuteAsync(
                 RequestBody[] requests,
                 string connectionString,
-                bool useTransaction = false,
                 CancellationToken token = default)
             {
                 if (connectionString == null) throw new ArgumentNullException(nameof(connectionString));
 
-                return ExecuteAsyncInternal(requests, connectionString, null, useTransaction, token);
+                return ExecuteAsyncInternal(requests, connectionString, null, token);
             }
 
             /// <inheritdoc cref="ExecuteAsyncInternal" />
             public static Task<List<Dictionary<string, object?>[][]>> ExecuteAsync(
                 RequestBody[] requests,
                 SqlConnection connection,
-                bool useTransaction = false,
                 CancellationToken token = default)
             {
                 if (connection == null) throw new ArgumentNullException(nameof(connection));
 
-                return ExecuteAsyncInternal(requests, null, connection, useTransaction, token);
+                return ExecuteAsyncInternal(requests, null, connection, token);
             }
 
             /// <inheritdoc cref="ExecuteAsyncInternal" />
             public static Task<List<Dictionary<string, object?>[][]>> ExecuteAsync(
                 RequestBody[] requests,
-                bool useTransaction = false,
                 CancellationToken token = default)
             {
                 if (_globalConnectionString == null)
@@ -208,7 +160,7 @@ namespace ZeroCode.Database.SqlServer
                         ExceptionsHelper.UseConnectionStringSetterFirst(nameof(SetGlobalConnectionString))
                     );
 
-                return ExecuteAsyncInternal(requests, _globalConnectionString, null, useTransaction, token);
+                return ExecuteAsyncInternal(requests, _globalConnectionString, null, token);
             }
         }
     }

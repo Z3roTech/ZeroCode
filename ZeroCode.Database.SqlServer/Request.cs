@@ -32,6 +32,14 @@ namespace ZeroCode.Database.SqlServer
         }
 
         /// <summary>
+        ///     Sets <see cref="_globalConnectionString" /> to <see langword="null" /> for testing null
+        /// </summary>
+        internal static void ClearGlobalConnectionString()
+        {
+            _globalConnectionString = null;
+        }
+
+        /// <summary>
         ///     Execute query without output
         /// </summary>
         /// <param name="queryBody"></param>

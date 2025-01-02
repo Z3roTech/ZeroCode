@@ -3,4 +3,5 @@
 **"ZeroCode"** is a C# library with utility methods
 
 Utilities:
-- Make SQL requests to SQL Server
+- Simple SQL requests to SQL Server and get convenient response (`ZeroCode.Database.SqlServer`)
+- Create and invoke async events (`ZeroCode.Async.Events`)

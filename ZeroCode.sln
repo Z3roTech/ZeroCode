@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZeroCode.Tests", "ZeroCode.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroCode.Database.SqlServer", "ZeroCode.Database.SqlServer\ZeroCode.Database.SqlServer.csproj", "{2F514C21-06BC-44F9-A7BC-2BCD04B535CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZeroCode.Async.Events", "ZeroCode.Async.Events\ZeroCode.Async.Events.csproj", "{2E5BE748-54D9-4068-91AE-E4EAFCBD6378}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2F514C21-06BC-44F9-A7BC-2BCD04B535CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F514C21-06BC-44F9-A7BC-2BCD04B535CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F514C21-06BC-44F9-A7BC-2BCD04B535CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E5BE748-54D9-4068-91AE-E4EAFCBD6378}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E5BE748-54D9-4068-91AE-E4EAFCBD6378}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E5BE748-54D9-4068-91AE-E4EAFCBD6378}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E5BE748-54D9-4068-91AE-E4EAFCBD6378}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

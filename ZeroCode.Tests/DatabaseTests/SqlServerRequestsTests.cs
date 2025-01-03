@@ -40,7 +40,7 @@ public class SqlServerRequestsTests
     }
 
     [Test]
-    public void TestTryUsingRequestMethods()
+    public void TryUsingRequestMethodsTest()
     {
         Assert.Throws<ArgumentOutOfRangeException>(() => Request.SetGlobalConnectionString(null!));
         Assert.Throws<ArgumentOutOfRangeException>(() => Request.SetGlobalConnectionString(string.Empty));
@@ -105,7 +105,7 @@ public class SqlServerRequestsTests
     }
 
     [Test]
-    public async Task TestMakeQueryViaConnectionString()
+    public async Task MakeQueryViaConnectionStringTest()
     {
         var result = await Request.ExecuteAsync(
             RequestBodyForQueryWithOutput,
@@ -123,7 +123,7 @@ public class SqlServerRequestsTests
     }
 
     [Test]
-    public async Task TestMakeQueryViaConnectionInstance()
+    public async Task MakeQueryViaConnectionInstanceTest()
     {
         _connection = new SqlConnection(ConnectionString);
         var result = await Request.ExecuteAsync(
@@ -142,7 +142,7 @@ public class SqlServerRequestsTests
     }
 
     [Test]
-    public async Task TestMakeQueryViaGlobalConnectionString()
+    public async Task MakeQueryViaGlobalConnectionStringTest()
     {
         Request.SetGlobalConnectionString(ConnectionString);
         var result = await Request.ExecuteAsync(
@@ -159,7 +159,7 @@ public class SqlServerRequestsTests
     }
 
     [Test]
-    public async Task TestMakeBatchQueriesViaConnectionString()
+    public async Task MakeBatchQueriesViaConnectionStringTest()
     {
         var allResults = await Request.Batch.ExecuteAsync(
             [RequestBodyForQueryWithOutput, RequestBodyForQueryWithOutput, RequestBodyForQueryWithOutput],
@@ -178,7 +178,7 @@ public class SqlServerRequestsTests
     }
 
     [Test]
-    public async Task TestMakeBatchQueriesViaConnectionInstance()
+    public async Task MakeBatchQueriesViaConnectionInstanceTest()
     {
         _connection = new SqlConnection(ConnectionString);
         var allResults = await Request.Batch.ExecuteAsync(
@@ -198,7 +198,7 @@ public class SqlServerRequestsTests
     }
 
     [Test]
-    public async Task TestMakeBatchQueriesViaGlobalConnectionString()
+    public async Task MakeBatchQueriesViaGlobalConnectionStringTest()
     {
         Request.SetGlobalConnectionString(ConnectionString);
         var allResults = await Request.Batch.ExecuteAsync(

@@ -2,7 +2,7 @@
 using ZeroCode.Async.Events;
 using ZeroCode.Tests.Moq;
 
-namespace ZeroCode.Tests.AsyncEvents;
+namespace ZeroCode.Tests.AsyncEventTests;
 
 public class ConsequentlyEventsInvokeTests
 {
@@ -34,7 +34,7 @@ public class ConsequentlyEventsInvokeTests
     }
 
     [TestCaseSource(nameof(TestingCaseDataForDefaultEventHandler))]
-    public async Task TestingDefault(int[] delays, int[] expectedOrder)
+    public async Task DefaultAsyncEventHandlerTest(int[] delays, int[] expectedOrder)
     {
         var senderMoq = new object();
         var eventArgsMoq = EventArgs.Empty;
@@ -64,7 +64,7 @@ public class ConsequentlyEventsInvokeTests
     }
 
     [TestCaseSource(nameof(TestingCaseDataForDefaultEventHandler))]
-    public async Task TestingWithCustomArgs(int[] delays, int[] expectedOrder)
+    public async Task AsyncEventHandlerWithCustomArgsTest(int[] delays, int[] expectedOrder)
     {
         var senderMoq = new object();
         var eventArgsMoq = TestingEventArgs.RandomNew();
@@ -97,7 +97,7 @@ public class ConsequentlyEventsInvokeTests
     }
 
     [TestCaseSource(nameof(TestingCaseDataForDefaultEventHandler))]
-    public async Task TestingWithCustomSenderAndArgs(int[] delays, int[] expectedOrder)
+    public async Task AsyncEventHandlerWithCustomSenderAndArgsTest(int[] delays, int[] expectedOrder)
     {
         var senderMoq = new TestingClass { Guid = Guid.NewGuid(), Id = Random.Shared.Next() };
         var eventArgsMoq = TestingEventArgs.RandomNew();

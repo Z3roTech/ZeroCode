@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ZeroCode.Async.Events
+namespace ZeroCode.Async
 {
     /// <summary>
     ///     Extensions that makes async event invocation possible

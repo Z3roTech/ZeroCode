@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZeroCode.Async.Events
+namespace ZeroCode.Async
 {
     /// <summary>
     ///     Async event handler delegate
@@ -18,7 +18,7 @@ namespace ZeroCode.Async.Events
     );
 
     /// <summary>
-    ///     Async event handler delegate with specifing sending event args type
+    ///     Async event handler delegate with specifying sending event args type
     /// </summary>
     /// <typeparam name="TEventArgs"></typeparam>
     /// <param name="sender"></param>
@@ -32,7 +32,7 @@ namespace ZeroCode.Async.Events
     );
 
     /// <summary>
-    ///     Async event handler delegate with specifing sender and sending event args types
+    ///     Async event handler delegate with specifying sender and sending event args types
     /// </summary>
     /// <typeparam name="TEventSender"></typeparam>
     /// <typeparam name="TEventArgs"></typeparam>

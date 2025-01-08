@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
-using ZeroCode.Database.SqlServer;
+using ZeroCode.Database;
 
 namespace ZeroCode.Tests.DatabaseTests;
 

@@ -1,4 +1,4 @@
-﻿namespace ZeroCode.Database.SqlServer
+﻿namespace ZeroCode.Internal
 {
     /// <summary>
     ///     Some helper utils for throwing exceptions

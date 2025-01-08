@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZeroCode.Async.Events
+namespace ZeroCode.Async
 {
     /// <summary>
     ///     Invoker for <see cref="AsyncEventHandler" /> delegate
@@ -29,7 +29,7 @@ namespace ZeroCode.Async.Events
         }
 
         /// <inheritdoc />
-        public Task TrueAsyncronosly(object? sender, EventArgs? args, CancellationToken token)
+        public Task TrueAsynchronously(object? sender, EventArgs? args, CancellationToken token)
         {
             return AsyncEvent.InvokeAsyncInternal(_event, AsyncEventInvocationMode.TrueAsync, sender, args, token);
         }
@@ -60,7 +60,7 @@ namespace ZeroCode.Async.Events
         }
 
         /// <inheritdoc />
-        public Task TrueAsyncronosly(object? sender, TEventArgs args, CancellationToken token)
+        public Task TrueAsynchronously(object? sender, TEventArgs args, CancellationToken token)
         {
             return AsyncEvent.InvokeAsyncInternal(_event, AsyncEventInvocationMode.TrueAsync, sender, args, token);
         }
@@ -91,7 +91,7 @@ namespace ZeroCode.Async.Events
         }
 
         /// <inheritdoc />
-        public Task TrueAsyncronosly(TEventSender sender, TEventArgs args, CancellationToken token)
+        public Task TrueAsynchronously(TEventSender sender, TEventArgs args, CancellationToken token)
         {
             return AsyncEvent.InvokeAsyncInternal(_event, AsyncEventInvocationMode.TrueAsync, sender, args, token);
         }

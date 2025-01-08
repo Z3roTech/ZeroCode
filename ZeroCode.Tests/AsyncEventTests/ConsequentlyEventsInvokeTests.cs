@@ -1,5 +1,5 @@
 ﻿using System.Collections.Concurrent;
-using ZeroCode.Async.Events;
+using ZeroCode.Async;
 using ZeroCode.Tests.Moq;
 
 namespace ZeroCode.Tests.AsyncEventTests;

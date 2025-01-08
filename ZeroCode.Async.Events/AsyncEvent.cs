@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZeroCode.Async.Events
+namespace ZeroCode.Async
 {
     /// <summary>
     ///     Internal methods for invoking async delegates like event
@@ -16,7 +16,7 @@ namespace ZeroCode.Async.Events
         /// <param name="event">Event handler that will be invoked</param>
         /// <param name="mode">Invocation mode of <paramref name="event" /></param>
         /// <param name="sender">Object, event invoked from</param>
-        /// <param name="eventArgs">Event arguments that must be sended to delegates</param>
+        /// <param name="eventArgs">Event arguments that must be sent to delegates</param>
         /// <param name="token"></param>
         /// <returns></returns>
         /// <exception cref="ArgumentOutOfRangeException"></exception>

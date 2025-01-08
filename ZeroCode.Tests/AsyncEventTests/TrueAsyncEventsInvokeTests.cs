@@ -1,5 +1,5 @@
 ﻿using System.Collections.Concurrent;
-using ZeroCode.Async.Events;
+using ZeroCode.Async;
 using ZeroCode.Tests.Moq;
 
 namespace ZeroCode.Tests.AsyncEventTests;
@@ -22,13 +22,13 @@ public class TrueAsyncEventsInvokeTests
         },
         new object[]
         {
-            new[] { 300, 100, 200, 400, 200,},
+            new[] { 300, 100, 200, 400, 200 },
             new[] { 400, 100, 400, 400, 100 },
             new[] { 2, 1, 3, 5, 4 }
         },
         new object[]
         {
-            new[] { 100, 200, 300, 400, 500,},
+            new[] { 100, 200, 300, 400, 500 },
             new[] { 1800, 1000, 800, 350, 100 },
             new[] { 2, 4, 3, 5, 1 }
         }
@@ -67,7 +67,7 @@ public class TrueAsyncEventsInvokeTests
 
         await DefaultEvents!
             .InvokeAsync()
-            .TrueAsyncronosly(senderMoq, eventArgsMoq, CancellationToken.None)
+            .TrueAsynchronously(senderMoq, eventArgsMoq, CancellationToken.None)
             .ConfigureAwait(false);
 
         AssertExpectedAndActualOrder(expectedOrder, _finishedTasksIds.ToArray());
@@ -75,13 +75,13 @@ public class TrueAsyncEventsInvokeTests
         return;
 
         async Task EventMethod(int id, int sleep, int delay, object? sender, EventArgs? args,
-            CancellationToken cancellationtoken)
+            CancellationToken cancellationToken)
         {
             // simulating non-async computing
             Thread.Sleep(sleep);
 
             // than go to async mode
-            await Task.Delay(delay, cancellationtoken).ConfigureAwait(false);
+            await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
             _finishedTasksIds.Enqueue(id);
 
             Assert.That(sender, Is.EqualTo(senderMoq));
@@ -103,7 +103,7 @@ public class TrueAsyncEventsInvokeTests
 
         await EventsWithCustomEventArgs!
             .InvokeAsync()
-            .TrueAsyncronosly(senderMoq, eventArgsMoq, CancellationToken.None)
+            .TrueAsynchronously(senderMoq, eventArgsMoq, CancellationToken.None)
             .ConfigureAwait(false);
 
         AssertExpectedAndActualOrder(expectedOrder, _finishedTasksIds.ToArray());
@@ -111,13 +111,13 @@ public class TrueAsyncEventsInvokeTests
         return;
 
         async Task EventMethod(int id, int sleep, int delay, object? sender, TestingEventArgs? args,
-            CancellationToken cancellationtoken)
+            CancellationToken cancellationToken)
         {
             // simulating non-async computing
             Thread.Sleep(sleep);
 
             // than go to async mode
-            await Task.Delay(delay, cancellationtoken).ConfigureAwait(false);
+            await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
             _finishedTasksIds.Enqueue(id);
 
             Assert.That(sender, Is.EqualTo(senderMoq));
@@ -127,7 +127,8 @@ public class TrueAsyncEventsInvokeTests
     }
 
     [TestCaseSource(nameof(TestingCaseDataForDefaultEventHandler))]
-    public async Task AsyncEventHandlerWithCustomSenderAndArgsTest(int[] threadSleeps, int[] delays, int[] expectedOrder)
+    public async Task AsyncEventHandlerWithCustomSenderAndArgsTest(int[] threadSleeps, int[] delays,
+        int[] expectedOrder)
     {
         var senderMoq = new TestingClass { Guid = Guid.NewGuid(), Id = Random.Shared.Next() };
         var eventArgsMoq = TestingEventArgs.RandomNew();
@@ -140,7 +141,7 @@ public class TrueAsyncEventsInvokeTests
 
         await EventsWithCustomSenderAndArgs!
             .InvokeAsync()
-            .TrueAsyncronosly(senderMoq, eventArgsMoq, CancellationToken.None)
+            .TrueAsynchronously(senderMoq, eventArgsMoq, CancellationToken.None)
             .ConfigureAwait(false);
 
         AssertExpectedAndActualOrder(expectedOrder, _finishedTasksIds.ToArray());
@@ -148,13 +149,13 @@ public class TrueAsyncEventsInvokeTests
         return;
 
         async Task EventMethod(int id, int sleep, int delay, TestingClass? sender, TestingEventArgs? args,
-            CancellationToken cancellationtoken)
+            CancellationToken cancellationToken)
         {
             // simulating non-async computing
             Thread.Sleep(sleep);
 
             // than go to async mode
-            await Task.Delay(delay, cancellationtoken).ConfigureAwait(false);
+            await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
             _finishedTasksIds.Enqueue(id);
 
             Assert.That(sender, Is.EqualTo(senderMoq));

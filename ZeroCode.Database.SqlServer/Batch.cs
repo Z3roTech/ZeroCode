@@ -5,8 +5,9 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using ZeroCode.Internal;
 
-namespace ZeroCode.Database.SqlServer
+namespace ZeroCode.Database
 {
     public static partial class Request
     {
@@ -53,7 +54,7 @@ namespace ZeroCode.Database.SqlServer
             }
 
             /// <summary>
-            ///     Execute multiple query requests with outputed tabled values
+            ///     Execute multiple query requests with outputted tabled values
             /// </summary>
             /// <param name="requests"></param>
             /// <param name="connectionString"></param>

@@ -5,16 +5,17 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using ZeroCode.Internal;
 
-namespace ZeroCode.Database.SqlServer
+namespace ZeroCode.Database
 {
     /// <summary>
-    ///     Utility funtions for executing query in database
+    ///     Utility functions for executing query in database
     /// </summary>
     public static partial class Request
     {
         /// <summary>
-        ///     Connection string to database that uses when nor connection string nor openned connection sent with query
+        ///     Connection string to database that uses when nor connection string nor opened connection sent with query
         /// </summary>
         private static string? _globalConnectionString;
 
@@ -92,7 +93,7 @@ namespace ZeroCode.Database.SqlServer
         /// <param name="connectionString"></param>
         /// <param name="connection">An existing connection that can be used for executing query</param>
         /// <param name="token"></param>
-        /// <returns>Task with an array of an arrays (rows of table) of dictionry (column of a row)</returns>
+        /// <returns>Task with an array of an arrays (rows of table) of dictionary (column of a row)</returns>
         /// <exception cref="InvalidOperationException"></exception>
         internal static async Task<Dictionary<string, object?>[][]> ExecuteAsyncInternal(
             RequestBody queryBody,

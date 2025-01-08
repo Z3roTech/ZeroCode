@@ -1,4 +1,4 @@
-﻿namespace ZeroCode.Async.Events
+﻿namespace ZeroCode.Async
 {
     /// <summary>
     ///     Invocation mods of async events

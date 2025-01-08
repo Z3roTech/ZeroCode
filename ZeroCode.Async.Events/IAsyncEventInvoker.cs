@@ -1,7 +1,7 @@
 ﻿using System.Threading;
 using System.Threading.Tasks;
 
-namespace ZeroCode.Async.Events
+namespace ZeroCode.Async
 {
     /// <summary>
     ///     Interface for all async event invokers
@@ -20,7 +20,7 @@ namespace ZeroCode.Async.Events
         Task Consequently(TEventSender sender, TEventArgs args, CancellationToken token);
 
         /// <summary>
-        ///     Invoke event simultaneously, run all delegates in didicated tasks and then await its completition
+        ///     Invoke event simultaneously, run all delegates in dedicated tasks and then await its competition
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
@@ -29,13 +29,13 @@ namespace ZeroCode.Async.Events
         Task Simultaneously(TEventSender sender, TEventArgs args, CancellationToken token);
 
         /// <summary>
-        ///     Invoke event as true asyncronosly work in .NET. Invoke delegate until it return async context, after that invoke
-        ///     next, in the end await completition of all tasks.
+        ///     Invoke event as true asynchronously work in .NET. Invoke delegate until it return async context, after that invoke
+        ///     next, in the end await competition of all tasks.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
         /// <param name="token"></param>
         /// <returns></returns>
-        Task TrueAsyncronosly(TEventSender sender, TEventArgs args, CancellationToken token);
+        Task TrueAsynchronously(TEventSender sender, TEventArgs args, CancellationToken token);
     }
 }

@@ -2,7 +2,7 @@
 using System.Data;
 
 // ReSharper disable once CheckNamespace
-namespace ZeroCode.Database.SqlServer
+namespace ZeroCode.Database
 {
     /// <summary>
     ///     Database query request body for using in <see cref="Request" /> methods

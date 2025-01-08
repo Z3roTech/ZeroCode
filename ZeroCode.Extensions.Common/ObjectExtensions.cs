@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 
-namespace ZeroCode.Extensions.Common
+namespace ZeroCode.Extensions
 {
     /// <summary>
     ///     Extension methods for any objects

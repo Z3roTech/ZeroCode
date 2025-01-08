@@ -1,4 +1,4 @@
-﻿using ZeroCode.Extensions.Common;
+﻿using ZeroCode.Extensions;
 
 namespace ZeroCode.Tests.ExtensionsTest;
 

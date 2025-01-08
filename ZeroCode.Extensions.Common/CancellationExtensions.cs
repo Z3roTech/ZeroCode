@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace ZeroCode.Extensions.Common
+namespace ZeroCode.Extensions
 {
     /// <summary>
     ///     Extensions methods for <see cref="CancellationTokenSource" />.

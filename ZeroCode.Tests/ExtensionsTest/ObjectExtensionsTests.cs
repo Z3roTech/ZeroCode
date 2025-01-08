@@ -1,6 +1,4 @@
-﻿using System.Runtime.ExceptionServices;
-using Microsoft.Identity.Client;
-using ZeroCode.Extensions.Common;
+﻿using ZeroCode.Extensions;
 
 namespace ZeroCode.Tests.ExtensionsTest;
 
@@ -17,7 +15,7 @@ public class ObjectExtensionsTests
         Assert.That(number.Cast<int>(), Is.EqualTo(number));
 
         object dbValue = DBNull.Value;
-        Assert.That(dbValue.DbCast<string>(), Is.EqualTo(default(string)));
+        Assert.That(dbValue.DbCast<string>(), Is.EqualTo(null));
         dbValue = "hello";
         Assert.That(dbValue.DbCast<string>(), Is.EqualTo("hello"));
     }

@@ -1,5 +1,5 @@
 ﻿using System.Reflection;
-using ZeroCode.Extensions.Common;
+using ZeroCode.Extensions;
 using ZeroCode.Tests.Moq;
 
 namespace ZeroCode.Tests.ExtensionsTest;
@@ -11,10 +11,10 @@ namespace ZeroCode.Tests.ExtensionsTest;
 public class AttributeExtTests
 {
     [TestingSingle("This is a field!")]
-    public readonly int FieldWithAttribute = default;
+    public readonly int FieldWithAttribute = 0;
 
     [TestingSingle("This is a property!")]
-    public int PropertyWithAttribute { get; set; } = default;
+    public int PropertyWithAttribute { get; set; } = 0;
 
     [TestingSingle("This is method!")]
     [TestingMultiple(0)]
@@ -69,5 +69,12 @@ public class AttributeExtTests
         var expected = new[] { 0, 1, 2 };
         for (var i = 0; i < multipleAttributes.Length; i++)
             Assert.That(multipleAttributes[i]!.Id, Is.EqualTo(expected[i]));
+    }
+
+    [Test]
+    public void GetDescriptionOfEnumValueTest()
+    {
+        var enumValueDescription = TestingEnum.Foo.GetDescription();
+        Assert.That(enumValueDescription, Is.EqualTo("Description of Foo"));
     }
 }

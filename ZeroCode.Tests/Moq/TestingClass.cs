@@ -6,35 +6,57 @@ public class TestingClass
     public Guid Guid { get; init; }
 }
 
-public class TestingAllDisposableClass : IDisposable, IAsyncDisposable
+public class TestingBothDisposableClass : IDisposable, IAsyncDisposable
 {
-    public const int DisposedAsyncronosly = 2;
-    public const int DisposedSyncronosly = 1;
+    public const int DisposedAsynchronously = 2;
+    public const int DisposedSynchronously = 1;
     private int _disposalType;
     public int DisposalType => _disposalType;
 
     /// <inheritdoc />
     public async ValueTask DisposeAsync()
     {
-        Interlocked.Add(ref _disposalType, DisposedAsyncronosly);
+        Interlocked.Add(ref _disposalType, DisposedAsynchronously);
     }
 
     /// <inheritdoc />
     public void Dispose()
     {
-        Interlocked.Add(ref _disposalType, DisposedSyncronosly);
+        Interlocked.Add(ref _disposalType, DisposedSynchronously);
     }
 }
 
 public class TestingDisposableClass : IDisposable
 {
-    public const int DisposedSyncronosly = 1;
+    public const int DisposedSynchronously = 1;
     private int _disposalType;
     public int DisposalType => _disposalType;
 
     /// <inheritdoc />
     public void Dispose()
     {
-        Interlocked.Add(ref _disposalType, DisposedSyncronosly);
+        Interlocked.Add(ref _disposalType, DisposedSynchronously);
     }
+}
+
+public class TestingAsyncDisposableClass : IAsyncDisposable
+{
+    public const int DisposedAsynchronously = 2;
+    private int _disposalType;
+    public int DisposalType => _disposalType;
+
+    /// <inheritdoc />
+    public async ValueTask DisposeAsync()
+    {
+        Interlocked.Add(ref _disposalType, DisposedAsynchronously);
+    }
+}
+
+public enum TestingEnum
+{
+    [System.ComponentModel.Description("Description of Foo")]
+    Foo,
+
+    [System.ComponentModel.Description("Description of Bar")]
+    Bar
 }

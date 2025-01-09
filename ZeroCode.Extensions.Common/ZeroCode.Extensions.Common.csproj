@@ -1,8 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Company>ZeroTech</Company>
+		<Authors>ZeroTech</Authors>
+		<Version>1.0.0-rc.1</Version>
+		<PackageTags>library; extensions; enumerable; collections; datetime; attributes; disposable;</PackageTags>
+		<PackageOutputPath>bin\package</PackageOutputPath>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageProjectUrl>https://www.nuget.org/packages/ZeroCode.Extensions.Common/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Z3roTech/ZeroCode</RepositoryUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>

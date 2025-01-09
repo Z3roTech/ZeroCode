@@ -1,12 +1,27 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>netstandard2.1</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Company>ZeroTech</Company>
+		<Authors>ZeroTech</Authors>
+		<Version>1.0.0-rc.1</Version>
+		<PackageTags>library; extensions; concurrent; generic;</PackageTags>
+		<PackageOutputPath>bin\package</PackageOutputPath>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+		<PackageProjectUrl>https://www.nuget.org/packages/ZeroCode.Core/</PackageProjectUrl>
+		<RepositoryUrl>https://github.com/Z3roTech/ZeroCode</RepositoryUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ZeroCode.Extensions.Common\ZeroCode.Extensions.Common.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\LICENSE.txt">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ZeroCode.Extensions.Common\ZeroCode.Extensions.Common.csproj" />
+	</ItemGroup>
 
 </Project>

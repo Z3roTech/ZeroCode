@@ -34,6 +34,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\ZeroCode.Async.Events\ZeroCode.Async.Events.csproj" />
+		<ProjectReference Include="..\ZeroCode.Core\ZeroCode.Core.csproj" />
 		<ProjectReference Include="..\ZeroCode.Database.SqlServer\ZeroCode.Database.SqlServer.csproj" />
 		<ProjectReference Include="..\ZeroCode.Extensions.Common\ZeroCode.Extensions.Common.csproj" />
 	</ItemGroup>

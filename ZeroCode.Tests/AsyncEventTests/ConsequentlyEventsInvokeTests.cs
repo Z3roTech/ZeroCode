@@ -53,9 +53,9 @@ public class ConsequentlyEventsInvokeTests
 
         return;
 
-        async Task EventMethod(int id, int delay, object? sender, EventArgs? args, CancellationToken cancellationtoken)
+        async Task EventMethod(int id, int delay, object? sender, EventArgs? args, CancellationToken cancellationToken)
         {
-            await Task.Delay(delay, cancellationtoken).ConfigureAwait(false);
+            await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
             _finishedTasksIds.Enqueue(id);
 
             Assert.That(sender, Is.EqualTo(senderMoq));
@@ -85,9 +85,9 @@ public class ConsequentlyEventsInvokeTests
         return;
 
         async Task EventMethod(int id, int delay, object? sender, TestingEventArgs? args,
-            CancellationToken cancellationtoken)
+            CancellationToken cancellationToken)
         {
-            await Task.Delay(delay, cancellationtoken).ConfigureAwait(false);
+            await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
             _finishedTasksIds.Enqueue(id);
 
             Assert.That(sender, Is.EqualTo(senderMoq));
@@ -118,9 +118,9 @@ public class ConsequentlyEventsInvokeTests
         return;
 
         async Task EventMethod(int id, int delay, TestingClass? sender, TestingEventArgs? args,
-            CancellationToken cancellationtoken)
+            CancellationToken cancellationToken)
         {
-            await Task.Delay(delay, cancellationtoken).ConfigureAwait(false);
+            await Task.Delay(delay, cancellationToken).ConfigureAwait(false);
             _finishedTasksIds.Enqueue(id);
 
             Assert.That(sender, Is.EqualTo(senderMoq));

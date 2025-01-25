@@ -1,0 +1,1 @@
+﻿Common .NET library that adds some extensions to .NET classes like disposables, enumerables and datetime.

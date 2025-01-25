@@ -3,7 +3,7 @@
 namespace ZeroCode
 {
     /// <summary>
-    ///     Part of date time that is uses for specifing truncation part
+    ///     Part of date time that is uses for specifying truncation part
     /// </summary>
     public enum DateTimePart
     {

@@ -1,0 +1,1 @@
+﻿.NET Library for simplifing work with MSSQL Database (T-SQL) via SQLConnection (Microsoft.Data.SqlClient) instance.
